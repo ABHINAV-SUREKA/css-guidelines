@@ -1,0 +1,158 @@
+/*
+GENERAL RULES:
+1.  Priority of selectors (in case of conflicting properties):
+    a.  !important declaration > inline style in HTML > ID (#) selector > Class (.) selector or Pseudo-class(:) selector > Element selector (p, div, li, a, etc.) > Universal (*) selector
+    b.  last ID selector > first ID selector (similarly for other type of selectors)
+2.  Usually text-related properties can be inherited from parent selectors by child selectors, and also can be overridden by the latter.
+3.  Non-text-related properties (eg: border-top, margin, padding) can't be inherited by child selectors, as that'd be impractical.
+4.  CSS Box Model comprises:
+    a.  inside an element: content (image, text, etc. of certain height & width) + padding + border
+    b.  outside an element: margin
+5.  Types of Boxes:
+    a.  inline:
+            occupies exactly the width needed for its content.
+            doesn't create any line-breaks before or after.
+            height & width don't apply.
+            padding & margin only applied horizontally.
+            are placed side-by-side.
+            eg: default elements: a, b, button, etc., & with css: display: inline
+    b.  block-level:
+            occupies 100% of the parent's element width.
+            creates line-breaks after it.
+            height & width apply.
+            padding & margin applied both vertically & horizontally.
+            can't be placed side-by-side (elements are stacked vertically by default).
+            eg: default elements: h1, p, ol, li, div, header, body, etc., & with css: display: block
+    c.  inline-block-level:
+            looks inline from outside placed (side-by-side and no line-breaks).
+            height & width apply.
+            padding & margin applied both vertically & horizontally.
+            eg: default elements: img, etc., & with css: display: inline-block
+ */
+
+
+
+/* UNIVERSAL SELECTOR - non-inheritable properties get applied to all the elements.
+   And of course, properties mentioned in this selector (least priority) can be overridden by other selectors (higher priority).
+*/
+* {
+    margin: 0;
+    padding: 0;
+    border-top: 10px solid;
+}
+
+/* COMBINING SELECTORS */
+h1,
+h2,
+h3,
+p,
+li {
+    color: #1098ad;
+}
+
+/* NESTED SELECTORS */
+article header p {
+    color: #1098ad;
+}
+
+/* PSEUDO-CLASSES */
+li:first-child {
+    font-weight: bold;
+}
+li:last-child {
+    font-style: italic;
+}
+li:nth-child(even) {
+    color: red;
+}
+nav a:link:last-child {
+    margin-right: 0;    /* trick to remove margin from right most child */
+}
+
+/* STYLING LINKS */
+/* Always follow std. order: LVHA */
+a:link {
+    color: #1098ad;
+    text-decoration: none;
+}
+a:visited {
+    color: #777;
+}
+a:hover {
+    color: orangered;
+    text-decoration: underline orangered;
+}
+a:active {
+    background-color: black;
+}
+
+/* TRICK TO CENTER AN ELEMENT */
+.container {
+    margin: 0 auto;
+}
+
+/* PAGE SECTIONS */
+body {
+    color: #444;
+    font-family: sans-serif;
+
+    border-top: 10px solid #1098ad;
+    position: relative;
+}
+
+#author {
+    font-style: italic;
+    font-size: 18px;
+}
+
+#copyright {
+    font-size: 16px;
+}
+
+.related-author {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.related {
+    list-style: none;
+}
+
+button {
+    font-size: 22px;
+    padding: 20px;
+    cursor: pointer;
+
+    position: absolute;
+    /* top: 50px;
+    left: 50px; */
+    bottom: 50px;
+    right: 50px;
+}
+
+h1::first-letter {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+h3 + p::first-line {
+    /* color: red; */
+}
+
+h2 {
+    /* background-color: orange; */
+    position: relative;
+}
+
+h2::before {
+    content: "TOP";
+    background-color: #ffe70e;
+    color: #444;
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
+    padding: 5px 10px;
+    position: absolute;
+    top: -10px;
+    right: -25px;
+}
