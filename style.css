@@ -6,7 +6,7 @@ GENERAL RULES:
 2.  Usually text-related properties can be inherited from parent selectors by child selectors, and also can be overridden by the latter.
 3.  Non-text-related properties (eg: border-top, margin, padding) can't be inherited by child selectors, as that'd be impractical.
 4.  CSS Box Model comprises:
-    a.  inside an element: content (image, text, etc. of certain height & width) + padding + border
+    a.  inside an element: content (image, text, etc. of certain height & width) + padding + border  (note: padding & border only seem to be outside the element)
     b.  outside an element: margin
 5.  Types of Boxes:
     a.  inline:
@@ -28,11 +28,25 @@ GENERAL RULES:
             height & width apply.
             padding & margin applied both vertically & horizontally.
             eg: default elements: img, etc., & with css: display: inline-block
+6.  Types of Flow:
+    a.  normal:
+        default positioning.
+        element is “in flow”, i.e. element is simply laid out according to its order in the HTML code.
+        position: relative
+    b.  absolute:
+        element is removed from the normal flow: “out of flow”.
+        no impact on surrounding elements, might overlap them.
+        we use top, bottom, left, or right to offset the element from its first relatively positioned parent container (i.e., its parent element, eg: <body>, is set to position: relative; if not, the element will be offset w.r.t. viewport).
+        position: absolute
+7.  Ways of building Layouts:
+    a. float - old way; uses the float property.
+    b. flexbox - modern way; for 1-d rows without using floats; perfect for component layouts.
+    c. css grid - modern way; for 2-d grid; perfect for page layouts & complex components.
  */
 
 
 
-/* UNIVERSAL SELECTOR - non-inheritable properties get applied to all the elements.
+/* UNIVERSAL SELECTOR (*) - non-inheritable properties get applied to all the elements.
    And of course, properties mentioned in this selector (least priority) can be overridden by other selectors (higher priority).
 */
 * {
@@ -55,7 +69,7 @@ article header p {
     color: #1098ad;
 }
 
-/* PSEUDO-CLASSES */
+/* PSEUDO-CLASSES (:) */
 li:first-child {
     font-weight: bold;
 }
@@ -66,8 +80,25 @@ li:nth-child(even) {
     color: red;
 }
 nav a:link:last-child {
-    margin-right: 0;    /* trick to remove margin from right most child */
+    margin-right: 0;            /* trick to remove margin from right most child */
 }
+
+/* PSEUDO-ELEMENTS (::) - don't exist in HTML but can still style in CSS; inline element by default */
+h1::first-letter {
+    font-size: 16px;
+}
+p::first-line {
+    color: red;
+}
+h3 + p::first-line {
+    color: red;                 /* adjacent sibling selector (+) - trick to set style on the first-line in only the adjacent p of each h3 */
+}
+h2::before {                    /* ::after & ::before - imp pseudo-element; automatically becomes very last & first child of the selector resp.; cosmetic styling with introducing any new HTML element */
+    content: "TOP";             /* content property is required here */
+    background-color: #ffe70e;
+    display: inline-block;
+}
+
 
 /* STYLING LINKS */
 /* Always follow std. order: LVHA */
@@ -89,70 +120,4 @@ a:active {
 /* TRICK TO CENTER AN ELEMENT */
 .container {
     margin: 0 auto;
-}
-
-/* PAGE SECTIONS */
-body {
-    color: #444;
-    font-family: sans-serif;
-
-    border-top: 10px solid #1098ad;
-    position: relative;
-}
-
-#author {
-    font-style: italic;
-    font-size: 18px;
-}
-
-#copyright {
-    font-size: 16px;
-}
-
-.related-author {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.related {
-    list-style: none;
-}
-
-button {
-    font-size: 22px;
-    padding: 20px;
-    cursor: pointer;
-
-    position: absolute;
-    /* top: 50px;
-    left: 50px; */
-    bottom: 50px;
-    right: 50px;
-}
-
-h1::first-letter {
-    font-style: normal;
-    margin-right: 5px;
-}
-
-h3 + p::first-line {
-    /* color: red; */
-}
-
-h2 {
-    /* background-color: orange; */
-    position: relative;
-}
-
-h2::before {
-    content: "TOP";
-    background-color: #ffe70e;
-    color: #444;
-    font-size: 16px;
-    font-weight: bold;
-    display: inline-block;
-    padding: 5px 10px;
-    position: absolute;
-    top: -10px;
-    right: -25px;
 }
