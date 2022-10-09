@@ -49,7 +49,9 @@ GENERAL RULES:
             parent container doesn't adjust its height acc to floated elements. for eg: if all elements in a container is floated, the container height collapses.
     b.  Flexbox:
             modern way.
+            uses display: flex
             for 1-d rows without using floats.
+            empty space inside a container gets evenly divided by its child elements.
             perfect for component layouts.
     c.  CSS Grid:
             modern way.
@@ -143,10 +145,24 @@ nav {
     float: right;
 }
 .clear {
-    clear: both;            /* trick 1 to clear float (when no other element exists to clear the float); here, .clear is an empty div inside same parent container as h1 & nav; empty divs clutter up the HTML */
+    clear: both;                /* trick 1 to clear float (when no other element exists to clear the float); here, .clear is an empty div inside same parent container as h1 & nav; empty divs clutter up the HTML */
 }
-.clearfix::after {          /* trick 2 to clear float; better approach; here, .clearfix is also a class of the parent container h1 & nav; ::after creates the last child element of the parent container */
-    content: "";            /* required field in ::before & ::after */
+.clearfix::after {              /* trick 2 to clear float; better approach; here, .clearfix is also a class of the parent container h1 & nav; ::after creates the last child element of the parent container */
+    content: "";                /* required field in ::before & ::after */
     clear: both;
-    display: block;         /* coz ::after & ::before are inline elements and clearing floats like this only work on block-level (here, div) elements */
+    display: block;             /* coz ::after & ::before are inline elements and clearing floats like this only work on block-level (here, div) elements */
+}
+
+/* FLEXBOX LAYOUT */
+.row {
+    display: flex;              /* elements get placed side-by-side */
+    align-items: flex-start;    /* vertical align inside .row; other options: flex-end, center, stretch (default; all elements inside .row takes the height of the longest element), etc. */
+    justify-content: center;    /* horizontal align inside .row; other options: space-between, flex-start, etc. (remaining space in .row gets distributed evenly between the flexbox items) */
+    gap: 75px;                  /* create space b/w flex items without using margin */
+    flex-direction: row;        /* to define which is main axis; default: row; other options: row-reverse, column, column-reverse */
+}
+.el {
+    align-self: auto;           /* to overwrite align-items property for individual flex items; other options: flex-end, center, etc. */
+    flex: 0 1 auto;             /* (shown default values); shorthand for flex-grow (allow an element to grow to fit .row), flex-shrink (allow an element to shrink to fit .row), and flex-basis (define an item's width without using width:; specified width may not apply if content is larger, or depending on flex-grow & flex-shrink values) */
+    order: 0;                   /* controls order of items; -1: first, 1: last */
 }
