@@ -11,7 +11,7 @@ GENERAL RULES:
 5.  Box-sizing:
     a.  box-sizing: content-box (default, no need to specify) - width: & height: only get applied to the content, padding + border adds to width: & height: specified (difficult as calculation is required to say, fit 2 elements side-by-side)
     b.  box-sizing: border-box - width: & height: get applied to the element (padding + border included in the width: & height: specified, and content's own area automatically gets reduced to fit width: & height:; easier as less calculation)
-5.  Types of Boxes:
+6.  Types of Boxes:
     a.  Inline:
             occupies exactly the width needed for its content.
             doesn't create any line-breaks before or after.
@@ -31,7 +31,7 @@ GENERAL RULES:
             height & width apply.
             padding & margin applied both vertically & horizontally.
             eg: default elements: img, etc., & with css: display: inline-block
-6.  Types of Flow:
+7.  Types of Flow:
     a.  Normal:
             default positioning.
             element is “in flow”, i.e. element is simply laid out according to its order in the HTML code.
@@ -41,7 +41,7 @@ GENERAL RULES:
             no impact on surrounding elements, might overlap them.
             we use top, bottom, left, or right to offset the element from its first relatively positioned parent container (i.e., its parent element, eg: <body>, is set to position: relative; if not, the element will be offset w.r.t. viewport).
             position: absolute
-7.  Ways of building Layouts:
+8.  Ways of building Layouts:
     a.  Float:
             old way.
             uses float: left & float: right.
@@ -51,11 +51,13 @@ GENERAL RULES:
             modern way.
             uses display: flex
             for 1-d rows without using floats.
-            empty space inside a container gets evenly divided by its child elements.
+            empty space inside a container gets evenly divided by its child elements horizontally (or vertically).
             perfect for component layouts.
     c.  CSS Grid:
             modern way.
+            display: grid
             for 2-d grid.
+            empty space inside a container gets evenly divided by its child elements horizontally & vertically.
             perfect for page layouts & complex components.
  */
 
@@ -156,8 +158,8 @@ nav {
 /* FLEXBOX LAYOUT */
 .row {
     display: flex;              /* elements get placed side-by-side */
-    align-items: flex-start;    /* vertical align inside .row; other options: flex-end, center, stretch (default; all elements inside .row takes the height of the longest element), etc. */
-    justify-content: center;    /* horizontal align inside .row; other options: space-between, flex-start, etc. (remaining space in .row gets distributed evenly between the flexbox items) */
+    align-items: flex-start;    /* vertically align inside .row; other options: flex-end, center, stretch (default; all elements inside .row takes the height of the longest element), etc. */
+    justify-content: center;    /* horizontally align inside .row; other options: space-between, flex-start, etc. (remaining space in .row gets distributed evenly between the flexbox items) */
     gap: 75px;                  /* create space b/w flex items without using margin */
     flex-direction: row;        /* to define which is main axis; default: row; other options: row-reverse, column, column-reverse */
 }
@@ -165,4 +167,26 @@ nav {
     align-self: auto;           /* to overwrite align-items property for individual flex items; other options: flex-end, center, etc. */
     flex: 0 1 auto;             /* (shown default values); shorthand for flex-grow (allow an element to grow to fit .row), flex-shrink (allow an element to shrink to fit .row), and flex-basis (define an item's width without using width:; specified width may not apply if content is larger, or depending on flex-grow & flex-shrink values) */
     order: 0;                   /* controls order of items; -1: first, 1: last */
+}
+
+/* CSS GRID LAYOUT */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 200px 300px;     /* establish the grid row & column tracks; fraction unit (fr) can be specified instead of px to make the size flexible (tend to fill the empty space on resize) */
+    grid-template-rows: 1fr 300px 200px auto;   /* note: can use grid-template-columns: repeat(4, 1fr) to repeat fr values */
+    align-items: start;                         /* vertically align inside rows */
+    justify-content: center;                    /* horizontally align inside .grid; only applies if .grid container is larger than the grid elements inside */
+    justify-items: start;                       /* horizontally align inside columns */
+    align-content: center;                      /* vertically align inside .grid; only applies if .grid container is larger than the grid elements inside */
+    row-gap: 60px;
+    column-gap: 75px;                           /* OR, use gap: property to set both */
+    height: 500px;
+}
+
+.el--grid {
+    grid-column: 2 / 3;                         /* to place a grid item inside a specific cell (here, at col 2); eg: grid-column: 2 / -1 means from 2nd col till the end */
+    /* grid-column: 1 / span 3; */              /* is same as grid-column: 1 / 4; span: property is used to span an item across more cells */
+    grid-row: 1 / 2;
+    align-self: center;                         /* to overwrite align-items property for individual grid items; other options: stretch, start, etc. */
+    justify-self: center;                       /* to overwrite justify-items property for individual grid items; other options: stretch, start, etc. */
 }
