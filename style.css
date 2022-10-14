@@ -63,7 +63,7 @@ GENERAL RULES:
     a.  Fluid layouts
             allow webpage to adapt to the current viewport width (or even height).
             use % (or vh / vw) unit instead of px for elements that should adapt to viewport (usually layout).
-            use max-width instead of width.
+            use max-width instead of width (element is at parent container's width when the container's width is less than element's max-width).
     b.  Responsive units
             use rem unit instead of px for most lengths.
             make it easy to scale the entire layout up or down automatically.
