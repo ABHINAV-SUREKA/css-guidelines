@@ -63,11 +63,14 @@ GENERAL RULES:
     a.  Fluid layouts
             allow webpage to adapt to the current viewport width (or even height).
             use % (or vh / vw) unit instead of px for elements that should adapt to viewport (usually layout).
-            use max-width instead of width (element is at parent container's width when the container's width is less than element's max-width).
+            use "max-width:" instead of "width:" (element is at parent container's width when the container's width is less than element's max-width).
     b.  Responsive units
-            use rem unit instead of px for most lengths.
+            use rem unit instead of px for most elements' lengths; rem - root element's font-size, i.e. <html> element's/browser's font size (which, by default, is 1rem = 16px).
             make it easy to scale the entire layout up or down automatically.
-            helpful trick: setting 1rem to 10px for easy calculations.
+            helpful trick: setting 1rem = 10px for easy calculations by doing:
+            html {
+                font-size: 62.5%;    # of the user's browser default size (10 is 62.5% of 16)    # instead of font-size: 10px;   # % helps user to inc/dec their browser's default font-size at convenience while px won't.
+            }
     c.  Flexible images
             by default, images don’t scale automatically as we change the viewport; so we need to fix that.
             always use % for image dimensions, together with the max-width property.
