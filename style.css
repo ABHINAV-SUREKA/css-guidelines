@@ -59,6 +59,21 @@ GENERAL RULES:
             for 2-d grid.
             empty space inside a container gets evenly divided by its child elements horizontally & vertically.
             perfect for page layouts & complex components.
+9.  Responsive design ingredients:
+    a.  Fluid layouts
+            allow webpage to adapt to the current viewport width (or even height).
+            use % (or vh / vw) unit instead of px for elements that should adapt to viewport (usually layout).
+            use max-width instead of width.
+    b.  Responsive units
+            use rem unit instead of px for most lengths.
+            make it easy to scale the entire layout up or down automatically.
+            helpful trick: setting 1rem to 10px for easy calculations.
+    c.  Flexible images
+            by default, images don’t scale automatically as we change the viewport; so we need to fix that.
+            always use % for image dimensions, together with the max-width property.
+    d.  Media queries
+            bring responsive sites to life.
+            change CSS styles on certain viewport widths (called breakpoints).
  */
 
 
