@@ -156,6 +156,11 @@ a:active {
     margin: 0 auto;
 }
 
+/* TRICK TO FIT AN IMAGE */
+.img {
+    width: 100%;                /* doing so will fit the image inside its parent container say, .img-box, and thus, keep the image's huge dimensions in check */
+}
+
 /* FLOATS */
 h1 {
     float: left;
