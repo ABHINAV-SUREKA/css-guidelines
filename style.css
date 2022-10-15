@@ -112,6 +112,11 @@ article header p {
     color: #1098ad;
 }
 
+/* AND SELECTORS - applies when all the mentioned classes are present in an element */
+.nav-link.nav-cta {
+    color: #1098ad;
+}
+
 
 /* PSEUDO-CLASSES (:) */
 li:first-child {
