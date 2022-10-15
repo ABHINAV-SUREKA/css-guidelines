@@ -96,6 +96,7 @@ GENERAL RULES:
     box-sizing: border-box;
 }
 
+
 /* COMBINING SELECTORS */
 h1,
 h2,
@@ -104,10 +105,12 @@ li {
     color: #1098ad;
 }
 
+
 /* NESTED SELECTORS */
 article header p {
     color: #1098ad;
 }
+
 
 /* PSEUDO-CLASSES (:) */
 li:first-child {
@@ -122,6 +125,7 @@ li:nth-child(even) {
 nav a:link:last-child {
     margin-right: 0;            /* trick to remove margin from right most child */
 }
+
 
 /* PSEUDO-ELEMENTS (::) - don't exist in HTML but can still style in CSS; inline element by default */
 h1::first-letter {
@@ -157,15 +161,6 @@ a:active {
     background-color: black;
 }
 
-/* TRICK TO CENTER AN ELEMENT */
-.container {
-    margin: 0 auto;
-}
-
-/* TRICK TO FIT AN IMAGE */
-.img {
-    width: 100%;                /* doing so will fit the image inside its parent container say, .img-box, and thus, keep the image's huge dimensions in check */
-}
 
 /* FLOATS */
 h1 {
@@ -183,6 +178,7 @@ nav {
     display: block;             /* coz ::after & ::before are inline elements and clearing floats like this only work on block-level (here, div) elements */
 }
 
+
 /* FLEXBOX LAYOUT */
 .row {
     display: flex;              /* elements get placed side-by-side */
@@ -196,6 +192,7 @@ nav {
     flex: 0 1 auto;             /* (shown default values); shorthand for flex-grow (allow an element to grow to fit .row), flex-shrink (allow an element to shrink to fit .row), and flex-basis (define an item's width without using width:; specified width may not apply if content is larger, or depending on flex-grow & flex-shrink values) */
     order: 0;                   /* controls order of items; -1: first, 1: last */
 }
+
 
 /* CSS GRID LAYOUT */
 .grid {
@@ -217,4 +214,21 @@ nav {
     grid-row: 1 / 2;
     align-self: center;                         /* to overwrite align-items property for individual grid items; other options: stretch, start, etc. */
     justify-self: center;                       /* to overwrite justify-items property for individual grid items; other options: stretch, start, etc. */
+}
+
+
+/* TRICK TO CENTER AN ELEMENT */
+.container {
+    margin: 0 auto;
+}
+
+/* TRICK TO FIT AN IMAGE */
+.img {
+    width: 100%;                /* doing so will fit the image inside its parent container say, .img-box, and thus, keep the image's huge dimensions in check */
+}
+
+/* TRICK TO ADD BORDER INSIDE */
+.btn--outline:hover {
+    background-color: #fdf2e9;
+    box-shadow: inset 0 0 0 3px #fff;           /* instead of border: 3px solid #fff; which adds the border outside & may displace other elements */
 }
