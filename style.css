@@ -35,7 +35,7 @@ GENERAL RULES:
     c.  Inline-block-level:
             looks inline from outside placed (side-by-side and no line-breaks).
             height & width apply.
-            padding & margin applied both vertically & horizontally.
+            padding & margin applied both vertically & horizontally (also, applied in such a way that parent container extends to keep the element inside)
             eg: default elements: img, etc., & with css: display: inline-block
 7.  Types of Flow:
     a.  Normal:
