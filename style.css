@@ -7,7 +7,7 @@ RESOURCES LINKS:
 /*
 GENERAL RULES:
 1.  Priority of selectors (in case of conflicting properties):
-    a.  !important declaration > inline style in HTML > ID (#) selector > Class (.) selector or Pseudo-class(:) selector > Element selector (p, div, li, a, etc.) > Universal (*) selector
+    a.  !important declaration (eg, in helper classes) > inline style in HTML > ID (#) selector > Class (.) selector or Pseudo-class(:) selector > Element selector (p, div, li, a, etc.) > Universal (*) selector
     b.  last ID selector > first ID selector (similarly for other type of selectors)
 2.  Usually text-related properties can be inherited from parent selectors by child selectors, and also can be overridden by the latter.
 3.  Non-text-related properties (eg: border-top, margin, padding) can't be inherited by child selectors, as that'd be impractical.
