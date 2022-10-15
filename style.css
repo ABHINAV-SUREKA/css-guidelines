@@ -105,7 +105,6 @@ li {
     color: #1098ad;
 }
 
-
 /* NESTED SELECTORS */
 article header p {
     color: #1098ad;
@@ -125,7 +124,6 @@ li:nth-child(even) {
 nav a:link:last-child {
     margin-right: 0;            /* trick to remove margin from right most child */
 }
-
 
 /* PSEUDO-ELEMENTS (::) - don't exist in HTML but can still style in CSS; inline element by default */
 h1::first-letter {
