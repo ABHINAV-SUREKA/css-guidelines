@@ -1,4 +1,10 @@
 /*
+RESOURCES LINKS:
+1.  https://unsplash.com/
+2.  https://maketintsandshades.com/
+ */
+
+/*
 GENERAL RULES:
 1.  Priority of selectors (in case of conflicting properties):
     a.  !important declaration > inline style in HTML > ID (#) selector > Class (.) selector or Pseudo-class(:) selector > Element selector (p, div, li, a, etc.) > Universal (*) selector
